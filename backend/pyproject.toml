@@ -8,4 +8,7 @@ dependencies = [
     "uvicorn[standard]",
     "sqlalchemy",
     "psycopg2-binary",
+    "bcrypt",
+    "pydantic[email]",
+    "python-dotenv",
 ]
