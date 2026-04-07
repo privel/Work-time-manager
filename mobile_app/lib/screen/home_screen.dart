@@ -669,7 +669,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: const Color(0xFF7B1FA2).withOpacity(0.08),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Icon(Icons.edit, color: Color(0xFF7B1FA2), size: 24),
+                  child: const Icon(Icons.accessibility_rounded, color: Color(0xFF7B1FA2), size: 24),
                 ),
                 const SizedBox(width: 14),
                 Expanded(

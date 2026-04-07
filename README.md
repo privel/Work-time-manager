@@ -1,163 +1,191 @@
-# SE Toolkit - Restroom Break Tracker & Leaderboard
+# Toilet Tracker
 
-A Flutter-based mobile application with a PostgreSQL-backed backend and an AI assistant that tracks employees' restroom break time during work hours, calculates its estimated financial cost, stores personal statistics, and displays a global leaderboard in a gamified format.
+A mobile application for tracking restroom break time with financial cost estimation and a gamified leaderboard.
 
-## 📋 Project Overview
+## 📸 Demo
 
-The app addresses the problem of low visibility of time lost during non-productive work breaks. Its key feature is converting this time into clear statistics and estimated financial cost, while maintaining user interest through gamification, rankings, and AI-generated feedback.
+> **Add screenshots:**
+> - Registration/login screen
+> - Break timer and visit history
+> - Personal statistics and financial report
+> - Global leaderboard
 
-### Key Features
-- ⏱️ Track restroom break duration during work hours
-- 💰 Calculate estimated financial cost based on salary/hourly rate
-- 📊 Personal statistics and insights
-- 🏆 Global leaderboard with gamification
-- 🤖 AI-powered assistant for motivation, engagement, and workplace communication suggestions
-- 🔐 Secure user authentication
+## 👥 End Users
 
----
+- **Employees** who want to track their breaks and see how much work time (and money) they spend.
+- **Managers/HR** (optional), interested in overall team work-time loss analytics.
 
-## 🗺️ Development Roadmap
+## ❌ Problem
 
-### Version 1.0 - MVP (Minimum Viable Product)
-**Goal:** Core functionality for tracking breaks and basic user management
+Unproductive breaks eat into work time invisibly. Employees don't realize how many minutes per day go to distractions, and employers don't see the real financial impact of these losses.
 
-#### Features
-- [x] PostgreSQL database setup (Docker)
-- [x] Backend API (Python FastAPI)
-  - User registration and authentication
-  - Basic REST endpoints for break logging
-- [ ] Flutter mobile app
-  - User registration/login screens
-  - Timer to start/stop restroom breaks
-  - Basic break history view
-- [ ] Database schema
-  - Users table
-  - Breaks table
-  - Basic indexing
+## ✅ Solution
 
-#### Tech Stack
-- **Frontend:** Flutter 3.x
-- **Backend:** Python FastAPI
-- **Database:** PostgreSQL 15+
-- **Containerization:** Docker & Docker Compose
+Toilet Tracker automatically logs the duration of each break, converts it into a monetary equivalent based on the user's salary, and presents the results in a clear format — personal charts, leaderboards, and summaries. Gamification motivates users to reduce unnecessary absences.
 
 ---
 
-### Version 1.5 - Enhanced Tracking & Statistics
-**Goal:** Add financial calculations and personal statistics
+## 🧩 Features
 
-#### Features
-- [ ] Salary/hourly rate configuration per user
-- [ ] Automatic financial cost calculation
-- [ ] Personal statistics dashboard
-  - Daily/weekly/monthly break time
-  - Cost breakdowns
-  - Charts and visualizations
-- [ ] Break history with filtering and sorting
-- [ ] Push notifications for excessive break times
+### Version 1 — Backend & API
+- ✅ PostgreSQL database setup (Docker)
+- ✅ FastAPI backend with REST endpoints
+- ✅ User registration and authentication
+- ✅ User profile management
+- ✅ Break timer (start/stop) and manual duration entry
+- ✅ Financial cost calculation based on salary
+- ✅ Visit history with filtering
+- ✅ Global leaderboard (by cost and by time)
+- ✅ Docker Compose orchestration (PostgreSQL + pgAdmin + Backend)
 
----
+### Version 2 — Flutter Mobile App
+- ✅ Flutter mobile client
+- ✅ Registration and login screens
+- ✅ Break timer UI with start/stop controls
+- ✅ Manual visit entry with custom duration
+- ✅ Personal cost dashboard
+- ✅ Leaderboard view
+- ✅ Calendar-based visit history
 
-### Version 2.0 - Gamification & Leaderboard
-**Goal:** Introduce social competition and engagement features
-
-#### Features
-- [ ] Global leaderboard
-  - Anonymous usernames
-  - Weekly/monthly/all-time rankings
-  - Top "efficient" users (lowest break time)
-- [ ] Achievement system
-  - Badges for milestones
-  - Streak tracking
-- [ ] User profiles with avatars
-- [ ] Social sharing (optional)
-- [ ] Privacy controls (opt-in/out of leaderboard)
-
----
-
-### Version 2.5 - AI Assistant Integration
-**Goal:** Integrate LLM-based assistant for personalized feedback
-
-#### Features
-- [ ] AI assistant integration (OpenAI/GPT or similar)
-- [ ] Motivational messages based on user behavior
-- [ ] Engagement suggestions to reduce break times
-- [ ] Workplace communication tips
-- [ ] Personalized daily summaries
-- [ ] Context-aware notifications
+### Not Yet Implemented
+- ⬜ Personal statistics with advanced charts (daily/weekly/monthly)
+- ⬜ Achievement and badge system
+- ⬜ Push notifications for exceeding limits
+- ⬜ Report export (CSV, PDF)
+- ⬜ Dark theme and multi-language support
+- ⬜ Team/department leaderboards
+- ⬜ Manager dashboard for supervisors
 
 ---
 
-### Version 3.0 - Advanced Features & Polish
-**Goal:** Production-ready application with advanced analytics
+## 📖 Usage
 
-#### Features
-- [ ] Advanced analytics
-  - Trend analysis
-  - Predictive insights
-  - Comparison with team/department averages
-- [ ] Manager dashboard (optional, opt-in)
-- [ ] Team/department leaderboards
-- [ ] Export functionality (CSV, PDF reports)
-- [ ] Offline mode with sync
-- [ ] Multi-language support
-- [ ] Dark mode
-- [ ] Accessibility improvements
+### Version 1 — Backend & API
 
----
+See [API.md](API.md) for full endpoint documentation.
 
-### Version 3.5 - Enterprise Features
-**Goal:** Support for organizational deployment
+**Quick start:**
+```bash
+docker compose up --build -d
+```
 
-#### Features
-- [ ] SSO/SAML integration
-- [ ] Role-based access control
-- [ ] Compliance and audit logging
-- [ ] Bulk user import/export
-- [ ] Customizable policies and thresholds
-- [ ] API rate limiting and monitoring
-- [ ] Advanced security features (2FA, biometric login)
+Register a user and interact with the API via `curl` or any HTTP client on `http://localhost:8000`.
+
+### Version 2 — Flutter Mobile App
+
+1. **Register** — provide email, username, password, and salary details (for cost calculation).
+2. **Log a break** — press "Start" when entering and "Stop" when leaving, or enter duration manually.
+3. **View cost** — the "Cost" screen shows total time and its financial equivalent.
+4. **Compete** — open the leaderboard and compare your rank with colleagues.
 
 ---
 
-### Version 4.0 - AI-Powered Insights & Automation
-**Goal:** Leverage AI for deeper insights and automation
+## 🚀 Deployment
 
-#### Features
-- [ ] AI-generated weekly/monthly reports
-- [ ] Behavioral pattern recognition
-- [ ] Smart suggestions for schedule optimization
-- [ ] Integration with calendar apps
-- [ ] Wellness tips based on usage patterns
-- [ ] Conversational AI interface for quick logging
-- [ ] Voice command support
+### Target OS
 
----
-
-## 🚀 Getting Started
+- **Ubuntu 24.04 LTS** (recommended, same as university VMs)
+- Windows/macOS also supported for local development
 
 ### Prerequisites
-- Flutter SDK 3.x
-- Python 3.10+
-- Docker & Docker Compose
-- PostgreSQL 15+ (or use Docker)
 
-### Running the Backend
+| Component | Version | Used in |
+|-----------|---------|---------|
+| Docker    | 24+     | Version 1 (Backend) |
+| Docker Compose | 2.20+ | Version 1 (Backend) |
+| Git       | any     | Both |
+| Flutter SDK | 3.x   | Version 2 (Flutter App) |
+| Android Studio / Xcode | latest | Version 2 (Flutter App) |
+
+### Step-by-Step Deployment
+
+#### Version 1 — Backend & API
+
+**1. Clone the repository**
 
 ```bash
-cd backend
-docker-compose up -d
-pip install -r requirements.txt
-uvicorn main:app --reload
+git clone https://github.com/<your-username>/se-toolkit-lab-9.git
+cd se-toolkit-lab-9
 ```
 
-### Running the Flutter App
+**2. Configure environment variables**
 
 ```bash
-cd frontend  # (to be created)
+cp .env.example .env
+nano .env
+```
+
+Fill in the values:
+
+```env
+DATABASE_URL=postgresql://postgres:postgres@db:5432/toilet_tracker
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=toilet_tracker
+```
+
+> `OPENAI_API_KEY` and `SECRET_KEY` can be left empty — they are not required for basic functionality.
+
+**3. Start services with Docker Compose**
+
+```bash
+docker compose up --build -d
+```
+
+This will start three containers:
+- **PostgreSQL** — port `5432`
+- **pgAdmin** — port `5050` (login: `admin@example.com`, password: `admin`)
+- **Backend (FastAPI)** — port `8000`
+
+**4. Verify the backend**
+
+```bash
+curl http://localhost:8000/
+# Expected response: {"message":"Backend is running"}
+```
+
+**5. (Optional) Access pgAdmin**
+
+Open `http://<vm-ip>:5050` and connect to the database:
+
+| Parameter | Value          |
+|-----------|----------------|
+| Host      | db             |
+| Port      | 5432           |
+| Database  | toilet_tracker  |
+| Username  | postgres       |
+| Password  | postgres       |
+
+---
+
+#### Version 2 — Flutter Mobile App
+
+**1. Prerequisites**
+
+Make sure you have Flutter SDK installed:
+
+```bash
+flutter --version
+```
+
+**2. Install dependencies**
+
+```bash
+cd mobile_app
 flutter pub get
+```
+
+**3. Configure the backend URL**
+
+Update the base URL in the app to point to your running backend (default: `http://localhost:8000`).
+
+**4. Run the app**
+
+```bash
 flutter run
 ```
+
+Or run from your IDE (Android Studio / VS Code) on an emulator or physical device.
 
 ---
 
@@ -166,73 +194,29 @@ flutter run
 ```
 se-toolkit-lab-9/
 ├── backend/
-│   ├── main.py                 # FastAPI application
-│   ├── requirements.txt        # Python dependencies
-│   ├── pyproject.toml          # Project configuration
-│   └── Dockerfile              # Backend container
-├── frontend/                   # (to be created)
-│   └── Flutter application
-├── docker-compose.yml          # Services orchestration
-├── .env.example                # Environment variables template
-└── README.md                   # This file
+│   ├── main.py              # FastAPI application
+│   ├── models.py            # SQLAlchemy models
+│   ├── schemas.py           # Pydantic schemas
+│   ├── database.py          # Database connection
+│   ├── Dockerfile           # Backend container
+│   ├── requirements.txt     # Python dependencies
+│   └── pyproject.toml       # Project configuration
+├── mobile_app/
+│   └── lib/                 # Flutter application
+├── docker-compose.yml       # Service orchestration
+├── .env.example             # Environment variables template
+├── API.md                   # Full API documentation
+└── README.md
 ```
-
----
-
-## 📊 Database Schema (Planned)
-
-### Users Table
-- id (UUID, PK)
-- username (VARCHAR)
-- email (VARCHAR, UNIQUE)
-- password_hash (VARCHAR)
-- hourly_rate (DECIMAL)
-- created_at (TIMESTAMP)
-- settings (JSONB)
-
-### Breaks Table
-- id (UUID, PK)
-- user_id (UUID, FK -> Users)
-- start_time (TIMESTAMP)
-- end_time (TIMESTAMP)
-- duration (INTERVAL)
-- cost (DECIMAL)
-- created_at (TIMESTAMP)
-
-### Leaderboard Table
-- id (UUID, PK)
-- user_id (UUID, FK -> Users)
-- period (VARCHAR)  # weekly, monthly, all-time
-- total_duration (INTERVAL)
-- total_cost (DECIMAL)
-- rank (INTEGER)
-- updated_at (TIMESTAMP)
 
 ---
 
 ## 🔒 Privacy & Ethics
 
-This application is designed with user privacy and consent in mind:
-- All data is opt-in
-- Users can choose to remain anonymous on leaderboards
-- No data is shared without explicit consent
-- Users can delete their accounts and all associated data
-- Compliance with GDPR and local data protection regulations
+The application is designed with privacy in mind:
+- All data is **opt-in** — users decide whether to participate
+- Ability to **hide yourself** from the leaderboard
+- Account deletion **completely erases** all associated data
+- Compliance with **GDPR** and local data protection laws
 
 ---
-
-## 📝 License
-
-[To be determined]
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
----
-
-## 📧 Contact
-
-[Your contact information]
