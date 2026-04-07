@@ -36,7 +36,8 @@ class MainScaffold extends StatelessWidget {
           haptic: true, // haptic feedback
           tabBorderRadius: 30,
           tabActiveBorder: Border.all(
-            color: Colors.grey.shade800,
+            // color: Colors.grey.shade800,
+            color: Color(0xFF4A148C),
             width: 1.5,
           ), // tab button border
           // tabBorder: Border.all(
@@ -50,7 +51,7 @@ class MainScaffold extends StatelessWidget {
           duration: Duration(milliseconds: 30), // tab animation duration
           gap: 5, // the tab button gap between icon and text
           color: Colors.grey[800], // unselected icon color
-          activeColor: Colors.grey[800], // selected icon and text color
+          activeColor: Color(0xFF4A148C), // selected icon and text color
           iconSize: 24, // tab button icon size
           // selected tab background color
           padding: EdgeInsets.symmetric(

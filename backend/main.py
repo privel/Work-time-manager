@@ -6,8 +6,9 @@ from datetime import datetime
 from database import engine, get_db, Base
 from models import User, UserProfile, ToiletVisit, Leaderboard
 from schemas import (
-    UserRegister, UserProfileCreate, UserResponse, UserProfileResponse,
-    ToiletVisitCreate, ToiletVisitResponse, CostEstimate, LeaderboardEntry
+    UserRegister, UserUpdate, UserProfileCreate, UserResponse, UserProfileResponse,
+    ToiletVisitCreate, ToiletVisitResponse, CostEstimate, LeaderboardEntry,
+    UserLogin
 )
 
 Base.metadata.create_all(bind=engine)
@@ -111,9 +112,9 @@ def register(user_data: UserRegister, db: Session = Depends(get_db)):
 
 
 @app.post("/login")
-def login(email: str, password: str, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == email).first()
-    if not user or not verify_password(password, user.hashed_password):
+def login(login_data: UserLogin, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == login_data.email).first()
+    if not user or not verify_password(login_data.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     return {"message": "Login successful", "user_id": user.id}
 
@@ -127,7 +128,7 @@ def get_user(user_id: int, db: Session = Depends(get_db)):
 
 
 @app.put("/users/{user_id}", response_model=UserResponse)
-def update_user(user_id: int, user_data: UserRegister, db: Session = Depends(get_db)):
+def update_user(user_id: int, user_data: UserUpdate, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -259,6 +260,23 @@ def get_visits(user_id: int, db: Session = Depends(get_db)):
     return db.query(ToiletVisit).filter(
         ToiletVisit.user_id == user_id
     ).order_by(ToiletVisit.started_at.desc()).all()
+
+
+@app.delete("/users/{user_id}/visits/{visit_id}")
+def delete_visit(user_id: int, visit_id: int, db: Session = Depends(get_db)):
+    visit = db.query(ToiletVisit).filter(
+        ToiletVisit.id == visit_id,
+        ToiletVisit.user_id == user_id
+    ).first()
+    if not visit:
+        raise HTTPException(status_code=404, detail="Visit not found")
+
+    db.delete(visit)
+    db.commit()
+
+    update_leaderboard(db, user_id)
+
+    return {"message": "Visit deleted"}
 
 
 @app.get("/users/{user_id}/cost", response_model=CostEstimate)

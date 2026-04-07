@@ -13,6 +13,21 @@ class UserRegister(BaseModel):
     hours_per_week: Optional[float] = None
 
 
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+
+class UserUpdate(BaseModel):
+    email: Optional[EmailStr] = None
+    username: Optional[str] = None
+    password: Optional[str] = None
+    job_title: Optional[str] = None
+    salary_amount: Optional[float] = None
+    salary_period: Optional[str] = "month"
+    hours_per_week: Optional[float] = None
+
+
 class UserProfileCreate(BaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None

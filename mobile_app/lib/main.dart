@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:mobile_app/routes/routes.dart';
 import 'package:mobile_app/screen/home_screen.dart';
+import 'package:mobile_app/services/auth_services.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await authService.init();
+
   runApp(const MyApp());
 }
+
+final AuthService authService = AuthService();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
